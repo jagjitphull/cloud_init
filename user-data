@@ -1,0 +1,24 @@
+#cloud-config
+hostname: rhel-kvm-vm
+users:
+  - name: admin
+    plain_text_passwd: admin123
+    lock_passwd: false
+    groups: [wheel]
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCayofrQKvCppJ0+8dA+Dw9Npeluhgfjw6l5eWapEVHis18dNibBaStWGz4WXcveAjjrOeoem2c580u0sXYjPjn0nTdMaIynC5UlUdHd9+WR4VMY3ONy/xXEJpKELJ/dE5Q7pwGsDgbf9J3RwRx5/4ISdx9l1dub11qk380moU2s756Zs1/18NpQU6IarPNbUXsqcVVTy+LDfkQDSHmARR0PnQFRFh3DRK98Z6LKlV9BvNGqD16w6q24JXPziFPi2NOOJ8DeRacP06SCOxqRK3CHMe8DEU+3S69ZMiiTbJLTwSknrvobH/5ru1Tbso33W8X9i9svALvbRCw742ZP4CUcnhtLzpUzQ85HifpNqFTzpkDMHAd6DShzGpMQs4xi7LY/e5awkDiN+H5mQiynKqBEeJYNXC8PyzrA6mn4qsvTXxEXSZZ8To3TmaenhOyP48VWiOeDZpyrW45YFs8HNXBgiMr+CfDh8jOxIfDkrwiYWzjRF8hstkflZfUOuD3aK0= ilg@virbhadra
+
+chpasswd:
+  expire: false
+
+package_update: true
+packages:
+  - vim
+  - net-tools
+  - wget
+  - cloud-init
+
+runcmd:
+  - echo "Welcome to RHEL KVM VM" > /etc/motd
